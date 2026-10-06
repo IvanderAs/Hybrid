@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "tertiary-fixed-dim": "#ffb95f", "on-tertiary-fixed": "#2a1700", "on-surface": "#dce3ec", "on-primary": "#003824", "tertiary-container": "#e29100", "on-tertiary-fixed-variant": "#653e00", "surface-container-highest": "#2e363c", "secondary-fixed": "#68fcbf", "secondary": "#45dfa4", "primary": "#4edea3", "inverse-surface": "#dce3ec", "surface-container-low": "#151c22", "surface-bright": "#333a41", "surface-variant": "#2e363c", "surface-dim": "#0d141a", "inverse-primary": "#006c49", "error": "#ffb4ab", "secondary-container": "#00bd85", "on-secondary-container": "#00452e", "surface": "#0d141a", "on-primary-container": "#00422b", "surface-container": "#192026", "on-secondary": "#003825", "tertiary": "#ffb95f", "on-secondary-fixed-variant": "#005137", "on-secondary-fixed": "#002114", "tertiary-fixed": "#ffddb8", "surface-tint": "#4edea3", "secondary-fixed-dim": "#45dfa4", "on-tertiary-container": "#523200", "on-error-container": "#ffdad6", "on-background": "#dce3ec", "surface-container-lowest": "#080f15", "on-error": "#690005", "error-container": "#93000a", "surface-container-high": "#242b31", "on-surface-variant": "#bbcabf", "primary-container": "#10b981", "background": "#0d141a", "primary-fixed-dim": "#4edea3", "on-primary-fixed-variant": "#005236", "outline": "#86948a", "inverse-on-surface": "#2a3138", "primary-fixed": "#6ffbbe", "outline-variant": "#3c4a42", "on-primary-fixed": "#002113", "on-tertiary": "#472a00" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "space-lg": "1.5rem", "gutter-sm": "0.5rem", "margin-tablet": "1.5rem", "space-md": "1rem", "margin": "1rem", "gutter": "1rem", "space-sm": "0.5rem", "space-xl": "2rem" }, fontFamily: { "headline-xl-mobile": ["Plus Jakarta Sans"], "label-button": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Inter"], "body-sm": ["Inter"], "label-numeric-lg": ["JetBrains Mono"], "body-lg": ["Inter"], "label-numeric-md": ["JetBrains Mono"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-telemetry": ["JetBrains Mono"] }, fontSize: { "headline-xl-mobile": ["28px", { lineHeight: "34px", letterSpacing: "-0.02em", fontWeight: "700" }], "label-button": ["15px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "headline-md": ["20px", { lineHeight: "26px", letterSpacing: "-0.01em", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-numeric-lg": ["22px", { lineHeight: "28px", letterSpacing: "-0.02em", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }], "label-numeric-md": ["14px", { lineHeight: "18px", letterSpacing: "0em", fontWeight: "500" }], "headline-xl": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "700" }], "label-telemetry": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "500" }] } } } }</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.12)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="Zero-Sync Logo" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WxVaQnAqtOnxnY2eie0St6dYyQs-DwmoiGxnHI8OU5VjtcqoP6MElsxzRNMMywCX0GcImUS4Q7pHeB54PP3veQV2bcMGuH1VifdDmTTrJAHktv4HQrbbSbFXB5H2K6Rj6aQKIcXjoAuSM5066wiIyOEiXLJx1cKHbf2MrTZy34cYNnvY3a9K_Ab5ON6C7dT6NedkTAsQ54pdaX9qjGeppgcR1evc7RPJe8alp_HJP9mtpzLeDmPtHSm0Q"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md tracking-tight text-on-surface truncate">Zero-Sync</span><span class="hidden font-headline-md text-headline-md text-on-surface-variant font-normal">/</span><span class="hidden font-body-sm text-body-sm text-on-surface-variant font-medium truncate">Vault</span></div><div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest w-fit"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span></span><span class="font-label-telemetry text-label-telemetry text-primary tracking-wide uppercase">100% Offline • Local Storage</span></div></div></div><div class="flex items-center gap-space-xs shrink-0"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center min-w-[32px]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-margin pb-space-xl gap-space-lg select-none">
+<!-- Viewfinder Hardware Capsule Section -->
+<section class="flex flex-col gap-space-xs mt-space-xs">
+<div class="relative w-full rounded-xl overflow-hidden bg-surface-container-lowest shadow-2xl flex flex-col justify-between min-h-[380px]">
+<!-- Simulated Camera Live Feed Texture / Receipt Base -->
+<div class="absolute inset-0 bg-cover bg-center opacity-85 scale-[1.02] filter contrast-125" data-alt="Close-up overhead photography of a paper retail receipt lying flat on a dark industrial slate workstation desk. Crisp sharp high contrast typography on paper, dramatic moody cyber emerald edge lighting, ultra fine detail, 8k resolution, raw realistic photography." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBOGhfqEhEpa5YyW94RNC_-BEafuvA_CfEuhcjo_E_5nts5iSNrYZrYlmH6Si46YVlc_b7YgfJ3vIvEsNwRhYe4CsHF8WIKJiTjyG-vHL3h6Qd5MIKawMgxOtBdVogw0CK5NPNbxCXoi7XoEpbcXR505hCK_pEknCtKvLbole5LQcigXa4_1yMjfKqos0T13kDV4GYtBoMCmtF4Lm5QgVjImR4O99xJf0ZsgcrTjertzvQdxuaDFXO6uw')"></div>
+<!-- Scanline Raster Effect -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none opacity-40"></div>
+<!-- Top Overlay Telemetry HUD -->
+<div class="relative z-10 p-space-sm flex items-center justify-between bg-surface-dim/80 backdrop-blur-md">
+<div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container-high/90">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="font-label-telemetry text-label-telemetry text-primary uppercase tracking-wider">Edge-AI Core v4.1 Active</span>
+</div>
+<!-- Controls: Flash, Auto-Crop, Resolution -->
+<div class="flex items-center gap-space-xs">
+<button class="w-8 h-8 rounded-lg bg-surface-container-highest/80 flex items-center justify-center text-on-surface hover:text-primary active:scale-95 transition-all" id="toggle-flash" type="button">
+<span class="material-symbols-outlined text-[18px]">flash_on</span>
+</button>
+<button class="px-2 h-8 rounded-lg bg-primary-container text-on-primary-container flex items-center gap-1 font-label-telemetry text-label-telemetry font-semibold shadow-sm active:scale-95 transition-all" id="toggle-crop" type="button">
+<span class="material-symbols-outlined text-[16px]">crop_free</span>
+<span>AUTO-CROP</span>
+</button>
+</div>
+</div>
+<!-- Viewfinder Optical Target with Corner Reticles -->
+<div class="relative z-10 flex-1 flex items-center justify-center p-space-md">
+<div class="relative w-full max-w-[280px] h-[210px] rounded-lg transition-transform duration-300" id="target-box">
+<!-- Top Left Reticle -->
+<div class="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-primary rounded-tl-sm shadow-[0_0_8px_rgba(78,222,163,0.8)]"></div>
+<!-- Top Right Reticle -->
+<div class="absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2 border-primary rounded-tr-sm shadow-[0_0_8px_rgba(78,222,163,0.8)]"></div>
+<!-- Bottom Left Reticle -->
+<div class="absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 border-primary rounded-bl-sm shadow-[0_0_8px_rgba(78,222,163,0.8)]"></div>
+<!-- Bottom Right Reticle -->
+<div class="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-primary rounded-br-sm shadow-[0_0_8px_rgba(78,222,163,0.8)]"></div>
+<!-- Pulsing Laser Line -->
+<div class="absolute inset-x-2 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse top-1/2 -translate-y-1/2 opacity-80"></div>
+<!-- Floating Optical Status Ribbon -->
+<div class="absolute -bottom-3 inset-x-0 flex justify-center">
+<div class="px-2.5 py-0.5 rounded-full bg-surface-dim/95 backdrop-blur shadow-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[14px]">document_scanner</span>
+<span class="font-label-telemetry text-label-telemetry text-on-surface">Receipt Auto-Detected • High Contrast • 1200×1800</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Hardware Control Bar & Shutter -->
+<div class="relative z-10 px-space-md py-space-sm bg-surface-dim/90 backdrop-blur-md flex items-center justify-between">
+<!-- Preset Selector Pill -->
+<button class="flex flex-col text-left px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors" id="compression-pill" type="button">
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant uppercase">Compression</span>
+<span class="font-label-numeric-md text-label-numeric-md text-primary font-semibold" id="compression-val">Standard 150KB</span>
+</button>
+<!-- Mechanical Shutter Trigger with Glow Ring -->
+<div class="relative flex items-center justify-center">
+<div class="absolute -inset-2 rounded-full bg-primary/20 blur-md pointer-events-none"></div>
+<button class="relative w-16 h-16 rounded-full bg-surface-container-lowest p-1 shadow-lg active:scale-90 transition-transform" id="shutter-btn" type="button">
+<div class="w-full h-full rounded-full bg-primary flex items-center justify-center text-on-primary shadow-[inset_0_2px_4px_rgba(255,255,255,0.4)]">
+<span class="material-symbols-outlined text-[28px] transition-transform" id="shutter-icon">camera</span>
+</div>
+</button>
+</div>
+<!-- Telemetry Frame Counter -->
+<div class="flex flex-col text-right px-2.5 py-1 rounded-lg bg-surface-container">
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant uppercase">Shutter Latency</span>
+<span class="font-label-numeric-md text-label-numeric-md text-on-surface font-semibold">12ms local</span>
+</div>
+</div>
+<!-- Shutter Flash Simulation Overlay -->
+<div class="absolute inset-0 bg-on-surface pointer-events-none opacity-0 transition-opacity duration-150 z-30" id="flash-effect"></div>
+</div>
+</section>
+<!-- Local Storage Vault Directory Explorer -->
+<section class="flex flex-col gap-space-md">
+<!-- Storage Path & Cryptographic Health Card -->
+<div class="w-full p-space-md rounded-xl bg-surface-container-low shadow-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-7 h-7 rounded-lg bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]">folder_special</span>
+</div>
+<div class="min-w-0">
+<h2 class="font-headline-md text-[14px] leading-tight text-on-surface font-bold truncate">Local Documents Directory</h2>
+<p class="font-label-telemetry text-[10px] text-on-surface-variant truncate">file:///var/mobile/Containers/Data/ZeroSync/receipts/</p>
+</div>
+</div>
+<div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 shrink-0">
+<span class="material-symbols-outlined text-primary text-[14px]">lock</span>
+<span class="font-label-telemetry text-label-telemetry text-primary font-semibold">AES-256</span>
+</div>
+</div>
+<!-- Segmented Local Storage Bar -->
+<div class="flex flex-col gap-1 pt-1">
+<div class="flex items-center justify-between font-label-telemetry text-label-telemetry">
+<span class="text-on-surface-variant">Allocated Flash Disk: 48.6 MB / 256 GB</span>
+<span class="text-primary font-semibold">142 Receipts</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden flex gap-0.5 p-0.5">
+<div class="h-full rounded-full bg-primary w-[32%]"></div>
+<div class="h-full rounded-full bg-tertiary w-[18%]"></div>
+<div class="h-full rounded-full bg-surface-bright flex-1"></div>
+</div>
+<div class="flex items-center gap-3 pt-0.5 font-label-telemetry text-[10px] text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span> High-Res (31 MB)</span>
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-tertiary inline-block"></span> Compressed (17.6 MB)</span>
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-surface-bright inline-block"></span> Free Sandbox</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-secondary pt-1">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span class="font-label-telemetry text-label-telemetry">Air-Gapped • No Remote API Endpoints • 100% Client Sovereignty</span>
+</div>
+</div>
+<!-- Search & Instant Filter Bar -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full h-11 pl-10 pr-10 rounded-lg bg-surface-container text-on-surface placeholder:text-on-surface-variant font-body-md text-body-md focus:bg-surface-container-high focus:outline-none transition-colors" placeholder="Search 142 local receipts by merchant, date, or tag..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+<!-- Recent Scanned Receipts Gallery -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between px-1">
+<h3 class="font-label-button text-label-button text-on-surface uppercase tracking-wide">Encrypted Local Ledger</h3>
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant">Sorted by capture timestamp</span>
+</div>
+<!-- Item 1: Costco -->
+<div class="w-full p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors flex items-center justify-between gap-space-sm shadow-sm active:scale-[0.99]">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container-highest shrink-0 overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Monochrome close-up scan texture of a Costco Wholesale physical store register receipt with itemized bulk goods, bar code, and store stamp on white thermal paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTCQtjsP0gw-E--Ajz2zpTbl3zVW_EgSJrpfkR8aEbTvGuAXhbGgXVsp-QA6XDwdUttQ9q-sSFx050AmXgERUsxLAU-gmmnSvHj4EscwirBQtPzgrgBce1DSh5ePQHbJV8ido2OVwbbLTbNtbzTB0KcaK9efy-m-Ja_odtSuK7pIOmJ9OR2pSCMLG3uaeWZ6Vb0-3HEvEXMGLkCWIk2-k6etjDsBhUSdNlz9kzUtISWkOMfgCbHzWpQw"/>
+<div class="absolute bottom-0 inset-x-0 h-1 bg-primary"></div>
+</div>
+<div class="min-w-0 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-[15px] font-bold text-on-surface truncate">Costco Wholesale</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface-variant font-label-telemetry text-[10px]">JPG</span>
+</div>
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span>May 14, 2024</span>
+<span>•</span>
+<span class="font-label-numeric-md text-[11px]">240 KB</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<span class="font-label-numeric-lg text-[17px] text-on-surface font-semibold">$142.80</span>
+<span class="font-label-telemetry text-[11px] text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Verified
+          </span>
+</div>
+</div>
+<!-- Item 2: Chevron Fuel -->
+<div class="w-full p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors flex items-center justify-between gap-space-sm shadow-sm active:scale-[0.99]">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container-highest shrink-0 overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Gas station gasoline receipt slip printed on thermal paper showing gallons and unleaded fuel details under dramatic high-contrast moody lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3cRW8Lw12M5Lkel50D0buepHPBoGGF5UebRrGWfSmNRQoYWPyIAY85M-UqMgF2pVPHlJTA4GrKcrzhGUbIT0Br0L7sxTHZ-VX2TIJlA3LQ3JHSJgMAfjoVhtRG3i0idVnjfadcf8hKC_-FLQd7nQ6VgZmHQnBSuN_RIHgoOsr8gvU6NVw5cofmlgHIYdxTiE3fDNnuueV-q-6UKkl3RuFphgSTqoj7msvPa0OzFy6hXjV0Cu9mmrkOg"/>
+<div class="absolute bottom-0 inset-x-0 h-1 bg-secondary-container"></div>
+</div>
+<div class="min-w-0 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-[15px] font-bold text-on-surface truncate">Chevron Fuel</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface-variant font-label-telemetry text-[10px]">WEBP</span>
+</div>
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span>May 13, 2024</span>
+<span>•</span>
+<span class="font-label-numeric-md text-[11px]">130 KB</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<span class="font-label-numeric-lg text-[17px] text-on-surface font-semibold">$58.10</span>
+<span class="font-label-telemetry text-[11px] text-secondary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Verified
+          </span>
+</div>
+</div>
+<!-- Item 3: Apple Store (#tax-deductible) -->
+<div class="w-full p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors flex items-center justify-between gap-space-sm shadow-sm active:scale-[0.99]">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container-highest shrink-0 overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Apple Store official purchase invoice sheet detailing MacBook workstation hardware with serial numbers and customer copy tax markers on textured premium paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2oe6gpKC7COxA9fmA_RKXeQIdCbrhRMRADK9LASS0g-fySPWS3d5Y1dvgETi9y4muCgJGaPQoZ8bAbPolVfMEhi63vNkCd9D71D4719DJw4BbrAxywldebukK90TOkE0c2b7kqC8XWNZqx99hLk9cJSrdrhb3ivEI5-HTzdsixzW9qbdHGVM2HZ0TKCnFFME4Tz354ga3s8D50F9Onv6uNNxdx__fZZoxMKGRkRsyYeGFwuaIXepo8A"/>
+<div class="absolute bottom-0 inset-x-0 h-1 bg-tertiary"></div>
+</div>
+<div class="min-w-0 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-[15px] font-bold text-on-surface truncate">Apple Store Hardware</span>
+<span class="px-1.5 py-0.5 rounded-full bg-tertiary/15 text-tertiary font-label-telemetry text-[10px] font-bold">#tax-deductible</span>
+</div>
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span>May 10, 2024</span>
+<span>•</span>
+<span class="font-label-numeric-md text-[11px]">310 KB</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<span class="font-label-numeric-lg text-[17px] text-tertiary-fixed-dim font-bold">$1,299.00</span>
+<span class="font-label-telemetry text-[11px] text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">shield</span> Hardware Bound
+          </span>
+</div>
+</div>
+<!-- Item 4: Home Depot Supplies -->
+<div class="w-full p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors flex items-center justify-between gap-space-sm shadow-sm active:scale-[0.99]">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative w-12 h-12 rounded-lg bg-surface-container-highest shrink-0 overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Hardware store receipt listing workshop materials and electrical cables with store logo header and date stamp." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxNFZuc1G6Gajtql91XdO-jCg6jXiK7JDZDql8YwuA40Zkj-Q46UyK2hv0UzVDAXHl1XJJBPchV8WWosWJ_xtqS9HSdZztM3PdyLsYGJ1SocggF88lKVQ42e_DKfutjJd9KbuhOH1ToSev50Irgzn4uRaAJghnR6GWmbqidPMOSse3KpTPsqrSWAoDy7lQqvlGjSBr-oTo63w3YVcg1WsMgD_GBs6F8cPWLRwscOq36nQSdZLqYHU5iA"/>
+<div class="absolute bottom-0 inset-x-0 h-1 bg-primary"></div>
+</div>
+<div class="min-w-0 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-[15px] font-bold text-on-surface truncate">Home Depot Supplies</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface-variant font-label-telemetry text-[10px]">JPG</span>
+</div>
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span>May 08, 2024</span>
+<span>•</span>
+<span class="font-label-numeric-md text-[11px]">175 KB</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<span class="font-label-numeric-lg text-[17px] text-on-surface font-semibold">$84.22</span>
+<span class="font-label-telemetry text-[11px] text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Verified
+          </span>
+</div>
+</div>
+</div>
+<!-- Batch Actions & Vault Operations Tray -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant uppercase px-1">Batch Operations &amp; Exports</span>
+<div class="grid grid-cols-3 gap-space-xs">
+<button class="flex flex-col items-center justify-center p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface active:scale-95 transition-all text-center gap-1 shadow-sm" id="btn-compress-all" type="button">
+<span class="material-symbols-outlined text-primary text-[20px]">compress</span>
+<span class="font-label-button text-[12px] leading-tight font-semibold">Compress All</span>
+<span class="font-label-telemetry text-[10px] text-secondary font-mono">-35% Disk</span>
+</button>
+<button class="flex flex-col items-center justify-center p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface active:scale-95 transition-all text-center gap-1 shadow-sm" id="btn-verify-disk" type="button">
+<span class="material-symbols-outlined text-primary-container text-[20px]">verified</span>
+<span class="font-label-button text-[12px] leading-tight font-semibold">Verify Disk</span>
+<span class="font-label-telemetry text-[10px] text-on-surface-variant font-mono">SHA-256 OK</span>
+</button>
+<button class="flex flex-col items-center justify-center p-space-sm rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface active:scale-95 transition-all text-center gap-1 shadow-sm" id="btn-export-folder" type="button">
+<span class="material-symbols-outlined text-tertiary text-[20px]">folder_zip</span>
+<span class="font-label-button text-[12px] leading-tight font-semibold">Export ZIP</span>
+<span class="font-label-telemetry text-[10px] text-tertiary font-mono">Raw Native</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<script>
+  (function() {
+    // 1. Shutter Click Micro-Interaction
+    const shutterBtn = document.getElementById('shutter-btn');
+    const flashEl = document.getElementById('flash-effect');
+    const shutterIcon = document.getElementById('shutter-icon');
+    const targetBox = document.getElementById('target-box');
+
+    if (shutterBtn && flashEl) {
+      shutterBtn.addEventListener('click', () => {
+        // Visual shutter snap
+        flashEl.style.opacity = '0.9';
+        if (targetBox) {
+          targetBox.classList.add('scale-105');
+        }
+        if (shutterIcon) {
+          shutterIcon.textContent = 'check';
+        }
+
+        setTimeout(() => {
+          flashEl.style.opacity = '0';
+          if (targetBox) {
+            targetBox.classList.remove('scale-105');
+          }
+        }, 120);
+
+        setTimeout(() => {
+          if (shutterIcon) {
+            shutterIcon.textContent = 'camera';
+          }
+        }, 800);
+      });
+    }
+
+    // 2. Compression Preset Cycler
+    const compressionPill = document.getElementById('compression-pill');
+    const compressionVal = document.getElementById('compression-val');
+    let isHiRes = false;
+
+    if (compressionPill && compressionVal) {
+      compressionPill.addEventListener('click', () => {
+        isHiRes = !isHiRes;
+        if (isHiRes) {
+          compressionVal.textContent = 'Hi-Res 500KB';
+          compressionVal.classList.remove('text-primary');
+          compressionVal.classList.add('text-tertiary');
+        } else {
+          compressionVal.textContent = 'Standard 150KB';
+          compressionVal.classList.remove('text-tertiary');
+          compressionVal.classList.add('text-primary');
+        }
+      });
+    }
+
+    // 3. Toggle Flash Feedback
+    const toggleFlash = document.getElementById('toggle-flash');
+    let flashOn = true;
+    if (toggleFlash) {
+      toggleFlash.addEventListener('click', () => {
+        flashOn = !flashOn;
+        toggleFlash.style.color = flashOn ? '' : 'var(--tw-colors-on-surface-variant)';
+        const icon = toggleFlash.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.textContent = flashOn ? 'flash_on' : 'flash_off';
+        }
+      });
+    }
+
+    // 4. Batch Button Feedback
+    const btnVerify = document.getElementById('btn-verify-disk');
+    if (btnVerify) {
+      btnVerify.addEventListener('click', () => {
+        const icon = btnVerify.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.classList.add('animate-spin');
+          setTimeout(() => {
+            icon.classList.remove('animate-spin');
+          }, 600);
+        }
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.4)]" data-active-classes="text-primary-container relative after:content-[''] after:absolute after:bottom-1 after:w-1 after:h-1 after:bg-primary-container after:rounded-full"><div class="flex items-center justify-around h-16 px-space-xs max-w-md mx-auto relative"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="stream" href="#"><span class="material-symbols-outlined text-[22px]">view_timeline</span><span class="font-label-button text-[11px] font-medium leading-none">Stream</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] -mt-5 group" data-path="quick-log" href="#"><div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.45)] group-active:scale-95 transition-transform"><span class="material-symbols-outlined text-[24px]">add_a_photo</span></div><span class="font-label-button text-[11px] font-semibold text-primary-container mt-1 leading-none">Log</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 transition-colors text-primary-container relative after:content-[''] after:absolute after:bottom-1 after:w-1 after:h-1 after:bg-primary-container after:rounded-full" data-path="vault" href="#"><span class="material-symbols-outlined text-[22px]">lock</span><span class="font-label-button text-[11px] font-medium leading-none">Vault</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="tax-export" href="#"><span class="material-symbols-outlined text-[22px]">receipt_long</span><span class="font-label-button text-[11px] font-medium leading-none">Tax Export</span></a></div></nav></body></html>

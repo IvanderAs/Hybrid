@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "tertiary-fixed-dim": "#ffb95f", "on-tertiary-fixed": "#2a1700", "on-surface": "#dce3ec", "on-primary": "#003824", "tertiary-container": "#e29100", "on-tertiary-fixed-variant": "#653e00", "surface-container-highest": "#2e363c", "secondary-fixed": "#68fcbf", "secondary": "#45dfa4", "primary": "#4edea3", "inverse-surface": "#dce3ec", "surface-container-low": "#151c22", "surface-bright": "#333a41", "surface-variant": "#2e363c", "surface-dim": "#0d141a", "inverse-primary": "#006c49", "error": "#ffb4ab", "secondary-container": "#00bd85", "on-secondary-container": "#00452e", "surface": "#0d141a", "on-primary-container": "#00422b", "surface-container": "#192026", "on-secondary": "#003825", "tertiary": "#ffb95f", "on-secondary-fixed-variant": "#005137", "on-secondary-fixed": "#002114", "tertiary-fixed": "#ffddb8", "surface-tint": "#4edea3", "secondary-fixed-dim": "#45dfa4", "on-tertiary-container": "#523200", "on-error-container": "#ffdad6", "on-background": "#dce3ec", "surface-container-lowest": "#080f15", "on-error": "#690005", "error-container": "#93000a", "surface-container-high": "#242b31", "on-surface-variant": "#bbcabf", "primary-container": "#10b981", "background": "#0d141a", "primary-fixed-dim": "#4edea3", "on-primary-fixed-variant": "#005236", "outline": "#86948a", "inverse-on-surface": "#2a3138", "primary-fixed": "#6ffbbe", "outline-variant": "#3c4a42", "on-primary-fixed": "#002113", "on-tertiary": "#472a00" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "space-lg": "1.5rem", "gutter-sm": "0.5rem", "margin-tablet": "1.5rem", "space-md": "1rem", "margin": "1rem", "gutter": "1rem", "space-sm": "0.5rem", "space-xl": "2rem" }, fontFamily: { "headline-xl-mobile": ["Plus Jakarta Sans"], "label-button": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Inter"], "body-sm": ["Inter"], "label-numeric-lg": ["JetBrains Mono"], "body-lg": ["Inter"], "label-numeric-md": ["JetBrains Mono"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-telemetry": ["JetBrains Mono"] }, fontSize: { "headline-xl-mobile": ["28px", { lineHeight: "34px", letterSpacing: "-0.02em", fontWeight: "700" }], "label-button": ["15px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "headline-md": ["20px", { lineHeight: "26px", letterSpacing: "-0.01em", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-numeric-lg": ["22px", { lineHeight: "28px", letterSpacing: "-0.02em", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }], "label-numeric-md": ["14px", { lineHeight: "18px", letterSpacing: "0em", fontWeight: "500" }], "headline-xl": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }], "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "700" }], "label-telemetry": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "500" }] } } } }</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.12)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="Zero-Sync Logo" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WxVaQnAqtOnxnY2eie0St6dYyQs-DwmoiGxnHI8OU5VjtcqoP6MElsxzRNMMywCX0GcImUS4Q7pHeB54PP3veQV2bcMGuH1VifdDmTTrJAHktv4HQrbbSbFXB5H2K6Rj6aQKIcXjoAuSM5066wiIyOEiXLJx1cKHbf2MrTZy34cYNnvY3a9K_Ab5ON6C7dT6NedkTAsQ54pdaX9qjGeppgcR1evc7RPJe8alp_HJP9mtpzLeDmPtHSm0Q"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md tracking-tight text-on-surface truncate">Zero-Sync</span><span class="hidden font-headline-md text-headline-md text-on-surface-variant font-normal">/</span><span class="hidden font-body-sm text-body-sm text-on-surface-variant font-medium truncate">Tax Export</span></div><div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest w-fit"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span></span><span class="font-label-telemetry text-label-telemetry text-primary tracking-wide uppercase">100% Offline • Local Storage</span></div></div></div><div class="flex items-center gap-space-xs shrink-0"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center min-w-[32px]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-margin space-y-space-md">
+<!-- Period Selector Tray -->
+<div class="flex flex-col space-y-space-sm pt-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Tax Analytics 2025</h2>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-highest">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-telemetry text-label-telemetry text-primary tracking-wider uppercase">Vault Synced</span>
+</div>
+</div>
+<!-- Quick Pill Selector -->
+<div class="flex items-center gap-space-xs overflow-x-auto py-1 scrollbar-none">
+<button class="period-btn px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-button text-body-sm transition-all duration-150 active:scale-95" onclick="setPeriod(this, 'Q1')">Q1</button>
+<button class="period-btn active-pill px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-button text-body-sm shadow-[0_0_12px_rgba(16,185,129,0.35)] transition-all duration-150 active:scale-95" onclick="setPeriod(this, 'Q2')">Q2</button>
+<button class="period-btn px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-button text-body-sm transition-all duration-150 active:scale-95" onclick="setPeriod(this, 'This Month')">This Month</button>
+<button class="period-btn px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-button text-body-sm transition-all duration-150 active:scale-95 flex items-center gap-1" onclick="setPeriod(this, 'Custom Range')">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+<span>Custom</span>
+</button>
+</div>
+</div>
+<!-- Summary KPI Cards -->
+<div class="grid grid-cols-1 gap-space-sm">
+<!-- Card A & B: Total Tracked + Deductible -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Total Tracked</span>
+<span class="material-symbols-outlined text-outline text-[18px]">account_balance_wallet</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-label-numeric-lg text-label-numeric-lg text-on-surface tracking-tight" id="kpi-total">$8,420.00</div>
+<div class="font-label-telemetry text-label-telemetry text-on-surface-variant mt-0.5">142 local records</div>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-xl p-space-md flex flex-col justify-between shadow-md relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-primary">Tax Deductible</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-label-numeric-lg text-label-numeric-lg text-primary tracking-tight" id="kpi-deductible">$3,180.50</div>
+<div class="inline-flex items-center gap-1 mt-1 px-1.5 py-0.5 rounded-full bg-primary-container/20 text-primary font-label-telemetry text-[10px]">
+<span class="material-symbols-outlined text-[10px]">trending_up</span>
+            37.8% of spend
+          </div>
+</div>
+</div>
+</div>
+<!-- Card C: Auditable Receipts Integrity -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[22px]">attachment</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Auditable Receipts Attached</span>
+<span class="font-label-numeric-md text-label-numeric-md text-on-surface">142 / 142 complete</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary-container/20 text-secondary-fixed">
+<span class="material-symbols-outlined text-[14px]">format_image_left</span>
+<span class="font-label-telemetry text-label-telemetry font-semibold">100%</span>
+</div>
+</div>
+</div>
+<!-- Local SVG Expense Breakdown Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md space-y-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">pie_chart</span>
+<h3 class="font-headline-md text-body-lg text-on-surface font-semibold">Categorical Allocation</h3>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-outline">Offline SVG Engine</span>
+</div>
+<!-- Donut Chart & Side Stats -->
+<div class="flex items-center justify-between gap-space-md">
+<!-- SVG Donut Chart -->
+<div class="relative w-36 h-36 shrink-0 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 100 100">
+<!-- Food: 32% -> dash 100.5, offset 0 -->
+<circle class="transition-all duration-500 hover:opacity-80" cx="50" cy="50" fill="transparent" r="40" stroke="#10b981" stroke-dasharray="100.5 314" stroke-dashoffset="0" stroke-width="12"></circle>
+<!-- Hardware & Tools: 24% -> dash 75.4, offset -100.5 -->
+<circle class="transition-all duration-500 hover:opacity-80" cx="50" cy="50" fill="transparent" r="40" stroke="#4edea3" stroke-dasharray="75.4 314" stroke-dashoffset="-100.5" stroke-width="12"></circle>
+<!-- Fuel: 18% -> dash 56.5, offset -175.9 -->
+<circle class="transition-all duration-500 hover:opacity-80" cx="50" cy="50" fill="transparent" r="40" stroke="#ffb95f" stroke-dasharray="56.5 314" stroke-dashoffset="-175.9" stroke-width="12"></circle>
+<!-- Business & Office: 15% -> dash 47.1, offset -232.4 -->
+<circle class="transition-all duration-500 hover:opacity-80" cx="50" cy="50" fill="transparent" r="40" stroke="#333a41" stroke-dasharray="47.1 314" stroke-dashoffset="-232.4" stroke-width="12"></circle>
+<!-- Others: 11% -> dash 34.5, offset -279.5 -->
+<circle class="transition-all duration-500 hover:opacity-80" cx="50" cy="50" fill="transparent" r="40" stroke="#86948a" stroke-dasharray="34.5 314" stroke-dashoffset="-279.5" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+<span class="font-label-telemetry text-[10px] text-on-surface-variant uppercase tracking-wider">Top Tag</span>
+<span class="font-label-numeric-md text-label-numeric-md text-primary font-bold">Food 32%</span>
+</div>
+</div>
+<!-- Compact Legend -->
+<div class="flex-1 flex flex-col space-y-1.5">
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container shrink-0"></span>
+<span class="text-on-surface truncate">Food &amp; Meals</span>
+</div>
+<span class="font-label-numeric-md text-body-sm text-on-surface shrink-0">$2,694.40</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-primary shrink-0"></span>
+<span class="text-on-surface truncate">Hardware &amp; Tools</span>
+</div>
+<span class="font-label-numeric-md text-body-sm text-on-surface shrink-0">$2,020.80</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary shrink-0"></span>
+<span class="text-on-surface truncate">Fuel &amp; Transit</span>
+</div>
+<span class="font-label-numeric-md text-body-sm text-on-surface shrink-0">$1,515.60</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-bright shrink-0"></span>
+<span class="text-on-surface-variant truncate">Office / Cloud</span>
+</div>
+<span class="font-label-numeric-md text-body-sm text-on-surface shrink-0">$1,263.00</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-outline shrink-0"></span>
+<span class="text-on-surface-variant truncate">Other Misc</span>
+</div>
+<span class="font-label-numeric-md text-body-sm text-on-surface-variant shrink-0">$926.20</span>
+</div>
+</div>
+</div>
+<!-- Monthly Tax Write-off Trend (Jan - May) -->
+<div class="pt-space-xs">
+<div class="flex items-center justify-between mb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Monthly Write-off Schedule</span>
+<span class="font-label-telemetry text-label-telemetry text-primary">Avg: $636/mo</span>
+</div>
+<div class="h-20 w-full flex items-end justify-between gap-2 px-1">
+<!-- Jan -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
+<div class="w-full bg-surface-container-highest rounded-t-sm flex flex-col justify-end h-16 overflow-hidden">
+<div class="w-full bg-primary-container/80 rounded-t-sm transition-all duration-300 group-hover:bg-primary" style="height: 48%;"></div>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant group-hover:text-primary">Jan</span>
+</div>
+<!-- Feb -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
+<div class="w-full bg-surface-container-highest rounded-t-sm flex flex-col justify-end h-16 overflow-hidden">
+<div class="w-full bg-primary-container/80 rounded-t-sm transition-all duration-300 group-hover:bg-primary" style="height: 62%;"></div>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant group-hover:text-primary">Feb</span>
+</div>
+<!-- Mar -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
+<div class="w-full bg-surface-container-highest rounded-t-sm flex flex-col justify-end h-16 overflow-hidden">
+<div class="w-full bg-primary-container/80 rounded-t-sm transition-all duration-300 group-hover:bg-primary" style="height: 78%;"></div>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant group-hover:text-primary">Mar</span>
+</div>
+<!-- Apr -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
+<div class="w-full bg-surface-container-highest rounded-t-sm flex flex-col justify-end h-16 overflow-hidden">
+<div class="w-full bg-primary-container/80 rounded-t-sm transition-all duration-300 group-hover:bg-primary" style="height: 88%;"></div>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant group-hover:text-primary">Apr</span>
+</div>
+<!-- May (Active / Projected) -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
+<div class="w-full bg-surface-container-highest rounded-t-sm flex flex-col justify-end h-16 overflow-hidden relative">
+<div class="w-full bg-primary rounded-t-sm shadow-[0_0_8px_rgba(78,222,163,0.5)] transition-all duration-300" style="height: 94%;"></div>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-primary font-bold">May</span>
+</div>
+</div>
+</div>
+</div>
+<!-- One-Tap Local Export Section (Highlighted Card) -->
+<div class="bg-surface-container rounded-xl p-space-md space-y-space-md shadow-lg relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface leading-tight">Generate Local Tax Package</h3>
+<span class="font-label-telemetry text-label-telemetry text-primary">Air-Gapped Client Assembly</span>
+</div>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-outline px-2 py-0.5 rounded-full bg-surface-container-lowest">Zero Cloud</span>
+</div>
+<!-- Radio Chips: Format Selector -->
+<div class="flex flex-col space-y-2">
+<label class="export-chip flex items-center justify-between p-2.5 rounded-lg bg-surface-container-high cursor-pointer transition-all duration-150 active:scale-[0.99] group">
+<div class="flex items-center gap-space-sm min-w-0">
+<input checked="" class="accent-primary w-4 h-4 cursor-pointer" name="export-format" onchange="updateFormatPreview('csv')" type="radio" value="csv"/>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Standard CSV (Excel / Numbers)</span>
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant">Includes line-item tax deductibility tags</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-[18px]">table_view</span>
+</label>
+<label class="export-chip flex items-center justify-between p-2.5 rounded-lg bg-surface-container-lowest cursor-pointer transition-all duration-150 active:scale-[0.99] group">
+<div class="flex items-center gap-space-sm min-w-0">
+<input class="accent-primary w-4 h-4 cursor-pointer" name="export-format" onchange="updateFormatPreview('pdf')" type="radio" value="pdf"/>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Schedule C Tax Summary (PDF)</span>
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant">Formatted for CPA filing &amp; form attachments</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-[18px]">picture_as_pdf</span>
+</label>
+<label class="export-chip flex items-center justify-between p-2.5 rounded-lg bg-surface-container-lowest cursor-pointer transition-all duration-150 active:scale-[0.99] group">
+<div class="flex items-center gap-space-sm min-w-0">
+<input class="accent-primary w-4 h-4 cursor-pointer" name="export-format" onchange="updateFormatPreview('zip')" type="radio" value="zip"/>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Full ZIP (CSV + 142 Receipts)</span>
+<span class="font-label-telemetry text-label-telemetry text-on-surface-variant">Raw tamper-proof metadata &amp; scans</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-[18px]">folder_zip</span>
+</label>
+</div>
+<!-- File Details Tray -->
+<div class="bg-surface-container-lowest rounded-lg p-2.5 flex items-center justify-between">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-tertiary text-[18px]">description</span>
+<span class="font-label-telemetry text-label-telemetry text-on-surface truncate" id="file-name-preview">ZeroSync_Tax_2025_Q2.csv</span>
+</div>
+<span class="font-label-telemetry text-label-telemetry text-primary font-semibold shrink-0" id="file-meta-preview">42.8 KB • 142 rows</span>
+</div>
+<!-- Primary Action Button (Local Dispatch) -->
+<button class="w-full py-3.5 px-space-md rounded-full bg-primary-container text-on-primary-container font-label-button text-label-button flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.35)] transition-all duration-150 active:scale-[0.98] select-none" id="export-trigger-btn" onclick="triggerNativeExport()">
+<span class="material-symbols-outlined text-[20px]" id="export-btn-icon">share</span>
+<span id="export-btn-text">Export to Files / AirDrop / Local Share</span>
+</button>
+</div>
+<!-- Audit Verification Banner -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm space-y-1 mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+<span class="font-label-telemetry text-label-telemetry text-on-surface font-semibold uppercase tracking-wider">Offline Integrity Verified</span>
+</div>
+<div class="font-label-telemetry text-label-telemetry text-on-surface-variant break-all">
+      SHA-256 Checksum: <span class="text-primary font-semibold">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span>
+</div>
+<div class="flex items-center gap-1.5 pt-1 text-on-surface-variant font-label-telemetry text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+      Compliant with IRS Rev. Proc. 97-22 digital receipt storage standards.
+    </div>
+</div>
+</div>
+<script>
+  function setPeriod(el, periodName) {
+    document.querySelectorAll('.period-btn').forEach(btn => {
+      btn.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-[0_0_12px_rgba(16,185,129,0.35)]');
+      btn.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+    });
+    el.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+    el.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-[0_0_12px_rgba(16,185,129,0.35)]');
+
+    const totalEl = document.getElementById('kpi-total');
+    const deductibleEl = document.getElementById('kpi-deductible');
+    const filePrev = document.getElementById('file-name-preview');
+
+    if (periodName === 'Q1') {
+      totalEl.innerText = '$6,120.00';
+      deductibleEl.innerText = '$2,480.00';
+      filePrev.innerText = 'ZeroSync_Tax_2025_Q1.csv';
+    } else if (periodName === 'Q2') {
+      totalEl.innerText = '$8,420.00';
+      deductibleEl.innerText = '$3,180.50';
+      filePrev.innerText = 'ZeroSync_Tax_2025_Q2.csv';
+    } else if (periodName === 'This Month') {
+      totalEl.innerText = '$2,140.00';
+      deductibleEl.innerText = '$890.20';
+      filePrev.innerText = 'ZeroSync_Tax_2025_May.csv';
+    } else {
+      filePrev.innerText = 'ZeroSync_Tax_Custom_Export.csv';
+    }
+  }
+
+  function updateFormatPreview(format) {
+    const filePrev = document.getElementById('file-name-preview');
+    const metaPrev = document.getElementById('file-meta-preview');
+    
+    document.querySelectorAll('.export-chip').forEach(chip => {
+      chip.classList.remove('bg-surface-container-high');
+      chip.classList.add('bg-surface-container-lowest');
+    });
+
+    const activeInput = document.querySelector(`input[value="${format}"]`);
+    if (activeInput) {
+      activeInput.closest('.export-chip').classList.remove('bg-surface-container-lowest');
+      activeInput.closest('.export-chip').classList.add('bg-surface-container-high');
+    }
+
+    if (format === 'csv') {
+      filePrev.innerText = 'ZeroSync_Tax_2025_Q2.csv';
+      metaPrev.innerText = '42.8 KB • 142 rows';
+    } else if (format === 'pdf') {
+      filePrev.innerText = 'ZeroSync_ScheduleC_2025_Q2.pdf';
+      metaPrev.innerText = '218.4 KB • 3 pages';
+    } else if (format === 'zip') {
+      filePrev.innerText = 'ZeroSync_FullAuditBundle_2025_Q2.zip';
+      metaPrev.innerText = '14.2 MB • 143 files';
+    }
+  }
+
+  function triggerNativeExport() {
+    const btn = document.getElementById('export-trigger-btn');
+    const btnText = document.getElementById('export-btn-text');
+    const btnIcon = document.getElementById('export-btn-icon');
+    
+    btnIcon.innerText = 'hourglass_top';
+    btnIcon.classList.add('animate-spin');
+    btnText.innerText = 'Compiling Encrypted File Locally...';
+
+    setTimeout(() => {
+      btnIcon.classList.remove('animate-spin');
+      btnIcon.innerText = 'check_circle';
+      btnText.innerText = 'Dispatched to Device Share Sheet!';
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'ZeroSync 2025 Tax Ledger',
+          text: 'Verified client-side Zero-Sync audit package.',
+          url: window.location.href
+        }).catch(() => {});
+      }
+
+      setTimeout(() => {
+        btnIcon.innerText = 'share';
+        btnText.innerText = 'Export to Files / AirDrop / Local Share';
+      }, 3000);
+    }, 600);
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.4)]" data-active-classes="text-primary-container relative after:content-[''] after:absolute after:bottom-1 after:w-1 after:h-1 after:bg-primary-container after:rounded-full"><div class="flex items-center justify-around h-16 px-space-xs max-w-md mx-auto relative"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="stream" href="#"><span class="material-symbols-outlined text-[22px]">view_timeline</span><span class="font-label-button text-[11px] font-medium leading-none">Stream</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] -mt-5 group" data-path="quick-log" href="#"><div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.45)] group-active:scale-95 transition-transform"><span class="material-symbols-outlined text-[24px]">add_a_photo</span></div><span class="font-label-button text-[11px] font-semibold text-primary-container mt-1 leading-none">Log</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 text-on-surface-variant hover:text-on-surface transition-colors" data-path="vault" href="#"><span class="material-symbols-outlined text-[22px]">lock</span><span class="font-label-button text-[11px] font-medium leading-none">Vault</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-0.5 transition-colors text-primary-container relative after:content-[''] after:absolute after:bottom-1 after:w-1 after:h-1 after:bg-primary-container after:rounded-full" data-path="tax-export" href="#"><span class="material-symbols-outlined text-[22px]">receipt_long</span><span class="font-label-button text-[11px] font-medium leading-none">Tax Export</span></a></div></nav></body></html>
