@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>VaultExpense Scanner</title>
+<!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            emerald: {
+              500: '#10b981',
+              600: '#059669',
+            },
+            surface: {
+              DEFAULT: '#f7f9fb',
+              dim: '#d8dadc',
+              bright: '#f7f9fb',
+              lowest: '#ffffff',
+              low: '#f2f4f6',
+            }
+          },
+          borderRadius: {
+            'custom': '4px',
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Animation Styles -->
+<style data-purpose="scanner-animations">
+    @keyframes scanMotion {
+      0% {
+        top: 8%;
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 0.95;
+      }
+      100% {
+        top: 88%;
+        opacity: 0.2;
+      }
+    }
+
+    .laser-scanner-line {
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0) 0%, #10b981 50%, rgba(16, 185, 129, 0) 100%);
+      box-shadow: 0 0 14px 2px rgba(16, 185, 129, 0.7);
+      animation: scanMotion 2.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.04); opacity: 1; }
+    }
+
+    .shutter-ring-pulse {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+  </style>
+<!-- END: Custom Animation Styles -->
+</head>
+<body class="bg-slate-900 text-slate-800 font-sans antialiased select-none flex justify-center items-center min-h-screen p-0 sm:p-4">
+<!-- BEGIN: MobileDeviceContainer -->
+<!-- Container framing standard iOS viewport dimensions -->
+<div class="relative w-full max-w-[420px] h-[100dvh] max-h-[900px] bg-white overflow-hidden shadow-2xl sm:rounded-[36px] flex flex-col justify-between border border-slate-200/80">
+<!-- BEGIN: TopStatusAndControlBar -->
+<header class="relative z-30 w-full pt-11 pb-3 px-4 bg-white/95 backdrop-blur-md border-b border-slate-200/70 flex flex-col gap-2">
+<!-- iOS Notch / Status Area Spacer -->
+<div class="flex items-center justify-between text-xs font-semibold px-2 text-slate-900 pb-1">
+<span class="">9:41</span>
+<div class="flex items-center space-x-1.5 text-slate-800">
+<!-- Signal Icon -->
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.25A10.936 10.936 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10c0 2.32-.72 4.47-1.95 6.25l-.62-.64C20.46 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9zm-6 9c0-3.31 2.69-6 6-6s6 2.69 6 6c0 1.48-.54 2.83-1.43 3.89l-.73-.75C16.48 14.35 17 13.23 17 12c0-2.76-2.24-5-5-5s-5 2.24-5 5c0 1.23.52 2.35 1.16 3.14l-.73.75C6.54 14.83 6 13.48 6 12zm3 0c0-1.66 1.34-3 3-3s3 1.34 3 3a2.98 2.98 0 0 1-.88 2.12l-.73-.74c.38-.37.61-.88.61-1.38 0-1.1-.9-2-2-2s-2 .9-2 2c0 .5.23 1.01.61 1.38l-.73.74A2.98 2.98 0 0 1 9 12zm3-1c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"></path></svg>
+<!-- Wifi -->
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4zm0 2.9c3.77 0 7.21 1.4 9.81 3.73L12 19.39 2.19 10.63C4.79 8.3 8.23 6.9 12 6.9z"></path></svg>
+<!-- Battery Pill -->
+<div class="w-5 h-2.5 border border-slate-900 rounded-sm p-0.5 flex items-center">
+<div class="w-full h-full bg-slate-900 rounded-[1px]"></div>
+</div>
+</div>
+</div>
+<!-- Action Nav Row -->
+<div class="flex items-center justify-between mt-1">
+<!-- Close Button -->
+<button aria-label="Close Scanner" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 active:scale-95 transition-all duration-150 flex items-center justify-center text-slate-700" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Offline Security Status Badge -->
+
+<!-- Manual Entry Button -->
+
+</div>
+</header>
+<!-- END: TopStatusAndControlBar -->
+<!-- BEGIN: CentralCameraViewfinderArea -->
+<!-- Viewfinder Area featuring background receipt photo with overlay guides and bounding tags -->
+<main class="relative flex-1 w-full overflow-hidden bg-slate-950 flex items-center justify-center">
+<!-- Full-bleed Camera Feed Background -->
+<img alt="A realistic slightly blurred top-down photograph of a retail store paper receipt on a modern neutral desk surface, viewed through a smartphone camera lens effect. Soft lighting, clean receipt typography, slight motion/depth of field blur. Photorealistic, subtle clean background." class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEu7y7qKzu_-4AlBTTRB6yJhQs9txanaLaof-vQ_3Lu7Z5GAf-Tt7CHbDtRXlaVB0VIhjmZx3Qb3mQJAm8WisrREJgK3xoUffIG2TrCW8bF7II3nrp0kjzn7hhGvu49QuixFpDtDjpALhO8JAyBkgg8mYKvcQlYZqUzZBN-GMq9y1wpWfJY1WA2tNAHUi83Bnbh67CDar8ELnAGwgYMn5notcjuexLb2Hyv9odXewSll1Dd26EpnJ91w">
+<!-- Dark Vignette and Frame Guidance Mask -->
+<div class="absolute inset-0 bg-slate-900/25 pointer-events-none"></div>
+<!-- Live OCR Viewport Framing Box -->
+<div class="relative w-[86%] h-[82%] max-w-[340px] pointer-events-none flex flex-col justify-between">
+<!-- Framing Corner: Top-Left -->
+<div class="absolute -top-1 -left-1 w-7 h-7 border-t-[3px] border-l-[3px] border-emerald-500 rounded-tl-sm shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+<!-- Framing Corner: Top-Right -->
+<div class="absolute -top-1 -right-1 w-7 h-7 border-t-[3px] border-r-[3px] border-emerald-500 rounded-tr-sm shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+<!-- Framing Corner: Bottom-Left -->
+<div class="absolute -bottom-1 -left-1 w-7 h-7 border-b-[3px] border-l-[3px] border-emerald-500 rounded-bl-sm shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+<!-- Framing Corner: Bottom-Right -->
+<div class="absolute -bottom-1 -right-1 w-7 h-7 border-b-[3px] border-r-[3px] border-emerald-500 rounded-br-sm shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+<!-- Laser Scanner Effect Bar -->
+<div class="laser-scanner-line pointer-events-none"></div>
+<!-- Top Floating Guidance Indicator -->
+
+<!-- Optical Bounding Box 1: Merchant Header -->
+
+<!-- Optical Bounding Box 2: Total Amount & Buffer Tag -->
+
+<!-- Central Crosshair Reticle -->
+<div class="absolute inset-0 m-auto w-6 h-6 pointer-events-none opacity-40">
+<div class="absolute left-1/2 -top-1 bottom-0 w-[1px] bg-white -translate-x-1/2"></div>
+<div class="absolute top-1/2 -left-1 right-0 h-[1px] bg-white -translate-y-1/2"></div>
+</div>
+<!-- Bottom Frame Status Label -->
+
+</div>
+</main>
+<!-- END: CentralCameraViewfinderArea -->
+<!-- BEGIN: BottomWhiteControlPanel -->
+<footer class="relative z-30 w-full bg-white border-t border-slate-200/90 shadow-[0_-8px_24px_rgba(0,0,0,0.04)] px-8 pt-5 pb-7 flex flex-col items-center">
+<!-- Main Controller Row -->
+<div class="w-full flex items-center justify-between mb-4">
+<!-- Gallery / Upload Option -->
+<button aria-label="Upload photo from gallery" class="flex flex-col items-center group active:scale-95 transition-transform duration-150" type="button">
+<div class="w-12 h-12 rounded-full bg-surface-low border border-slate-200 flex items-center justify-center text-slate-700 group-hover:bg-slate-200 transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+
+</button>
+<!-- Tactile Double-Ring Shutter Action Button -->
+<button aria-label="Capture receipt" class="relative group active:scale-90 transition-transform duration-150 shutter-ring-pulse focus:outline-none" type="button">
+<!-- Outer Ring Border -->
+<div class="w-[74px] h-[74px] rounded-full p-[3px] border-2 border-slate-300 group-hover:border-emerald-500 transition-colors flex items-center justify-center">
+<!-- Inner Solid 'Secure Emerald' Button -->
+<div class="w-full h-full rounded-full bg-emerald-500 shadow-md group-hover:bg-emerald-600 transition-all flex items-center justify-center">
+<!-- Camera Center Reticle / Spark Icon -->
+<svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="3.5"></circle>
+<path d="M6.8 6.8l-1.4-1.4M17.2 6.8l1.4-1.4M6.8 17.2l-1.4 1.4M17.2 17.2l1.4 1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</button>
+<!-- Flash / Torch Toggle Button -->
+<button aria-label="Toggle Flash Mode" class="flex flex-col items-center group active:scale-95 transition-transform duration-150" type="button">
+<div class="w-12 h-12 rounded-full bg-surface-low border border-slate-200 flex items-center justify-center text-slate-700 group-hover:bg-slate-200 transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+
+</button>
+</div>
+<!-- Security / Privacy Footnote -->
+
+<!-- iOS Home Screen Bar Indicator -->
+<div class="w-32 h-1 bg-slate-300 rounded-full mt-3"></div>
+</footer>
+<!-- END: BottomWhiteControlPanel -->
+</div>
+<!-- END: MobileDeviceContainer -->
+
+
+</body></html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>VaultExpense - Review Transaction</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-high": "#e6e8ea",
+            "primary-fixed": "#6ffbbe",
+            "on-error-container": "#93000a",
+            "inverse-primary": "#4edea3",
+            "on-secondary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#e0e3e5",
+            "primary-container": "#10b981",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#3f465c",
+            "outline": "#6c7a71",
+            "surface-container": "#eceef0",
+            "on-tertiary-fixed-variant": "#38485d",
+            "tertiary-fixed": "#d3e4fe",
+            "tertiary": "#505f76",
+            "surface-variant": "#e0e3e5",
+            "primary": "#006c49",
+            "primary-fixed-dim": "#4edea3",
+            "on-error": "#ffffff",
+            "inverse-surface": "#2d3133",
+            "on-surface-variant": "#3c4a42",
+            "surface-container-low": "#f2f4f6",
+            "secondary-container": "#dae2fd",
+            "outline-variant": "#bbcabf",
+            "on-surface": "#191c1e",
+            "tertiary-container": "#94a4bd",
+            "inverse-on-surface": "#eff1f3",
+            "tertiary-fixed-dim": "#b7c8e1",
+            "on-primary-container": "#00422b",
+            "on-primary": "#ffffff",
+            "on-secondary-container": "#5c647a",
+            "error-container": "#ffdad6",
+            "on-primary-fixed": "#002113",
+            "secondary-fixed": "#dae2fd",
+            "surface-tint": "#006c49",
+            "surface-dim": "#d8dadc",
+            "surface": "#f7f9fb",
+            "on-primary-fixed-variant": "#005236",
+            "on-tertiary-container": "#2a3a4f",
+            "on-background": "#191c1e",
+            "background": "#f7f9fb",
+            "on-tertiary": "#ffffff",
+            "secondary": "#565e74",
+            "surface-bright": "#f7f9fb",
+            "on-tertiary-fixed": "#0b1c30",
+            "on-secondary-fixed": "#131b2e",
+            "secondary-fixed-dim": "#bec6e0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "label-lg": ["Geist", "sans-serif"],
+            "display-lg-mobile": ["Space Grotesk", "sans-serif"],
+            "headline-lg": ["Space Grotesk", "sans-serif"],
+            "headline-xl": ["Space Grotesk", "sans-serif"],
+            "headline-xl-mobile": ["Space Grotesk", "sans-serif"],
+            "label-md": ["Geist", "sans-serif"],
+            "display-lg": ["Space Grotesk", "sans-serif"],
+            "body-lg": ["Geist", "sans-serif"],
+            "label-mono": ["Space Grotesk", "monospace"],
+            "body-sm": ["Geist", "sans-serif"],
+            "body-md": ["Geist", "sans-serif"],
+            "headline-sm": ["Space Grotesk", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Hide scrollbars for slick app viewport */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased h-full flex justify-center selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Mobile Frame Container -->
+<div class="relative w-full max-w-[440px] min-h-screen bg-surface flex flex-col justify-between shadow-2xl border-x border-outline-variant/30">
+<!-- Top Minimal Navigation Bar (Focused Task View: Back-to-Main Pattern) -->
+<header class="sticky top-0 z-30 bg-surface/90 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-outline-variant/20">
+<button aria-label="Go back" class="flex size-10 items-center justify-center rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<div class="flex items-center gap-1.5">
+<span class="size-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-headline-sm text-sm font-semibold tracking-tight text-on-surface">Review Transaction</span>
+</div>
+<span class="font-label-mono text-[10px] text-tertiary tracking-wider uppercase">Vault Safe Sync</span>
+</div>
+<button aria-label="Discard receipt" class="flex size-10 items-center justify-center rounded-xl text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</header>
+<!-- Main Scrollable Content Area -->
+<main class="flex-1 overflow-y-auto px-4 py-5 flex flex-col gap-6 no-scrollbar pb-28">
+<!-- 1. Receipt Preview Thumbnail Section -->
+<section class="flex flex-col items-center">
+<div class="group relative w-48 h-36 rounded-xl overflow-hidden border border-outline-variant/40 bg-surface-container-lowest shadow-sm transition-all hover:shadow-md">
+<!-- Scanned Receipt Image Placeholder -->
+<img class="w-full h-full object-cover object-top opacity-90 transition-transform duration-300 group-hover:scale-105" data-alt="Close up photograph of a paper store checkout receipt printed with neat typography, high-key studio lighting with soft diffused shadows against a neutral surface, showcasing high clarity and crisp minimalist fintech composition." src="{{DATA:IMAGE:IMAGE_5}}">
+<!-- Subtle Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/60 via-transparent to-transparent pointer-events-none"></div>
+<!-- OCR Validated Chip (Top Right) -->
+<div class="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm border border-outline-variant/30 shadow-xs">
+<span class="material-symbols-outlined text-primary text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-[10px] text-on-surface font-semibold tracking-wide">OCR 99%</span>
+</div>
+<!-- View Receipt Interactive Pill -->
+<button class="absolute bottom-2 inset-x-2 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/40 text-on-surface shadow-sm active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-primary text-[16px]">zoom_in</span>
+<span class="font-label-md text-xs font-medium tracking-tight">View Full Receipt</span>
+</button>
+</div>
+</section>
+<!-- 2. Monetary Amount Input Section -->
+<section class="flex flex-col items-center justify-center text-center px-2">
+<label class="font-label-md text-xs font-semibold text-tertiary uppercase tracking-widest mb-1.5 flex items-center gap-1" for="transaction-amount">
+<span>Transaction Total</span>
+<span class="material-symbols-outlined text-tertiary text-[13px]">lock</span>
+</label>
+<div class="relative flex items-center justify-center w-full">
+<div class="flex items-baseline justify-center font-label-mono font-bold tracking-tight text-on-surface">
+<span class="text-3xl text-primary font-semibold mr-1 select-none">$</span>
+<input class="w-44 text-center text-4xl sm:text-5xl font-label-mono font-bold bg-transparent border-0 border-b-2 border-transparent focus:border-primary-container focus:ring-0 focus:outline-none p-0 text-on-surface tracking-tight" id="transaction-amount" type="text" value="40.90">
+</div>
+</div>
+<p class="font-body-sm text-xs text-on-surface-variant mt-1.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
+          Matches parsed paper subtotal &amp; taxes
+        </p>
+</section>
+<!-- 3. Form Fields / Cryptographic Metadata Inputs -->
+<section class="flex flex-col gap-3">
+<!-- Merchant Input Row -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-3.5 flex items-center gap-3.5 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all shadow-xs">
+<div class="size-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary shrink-0 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+</div>
+<div class="flex-1 min-w-0">
+<label class="block font-label-md text-[11px] font-semibold text-tertiary uppercase tracking-wider" for="merchant-name">Merchant</label>
+<input class="w-full bg-transparent border-0 p-0 text-on-surface font-body-md font-medium focus:ring-0 focus:outline-none placeholder:text-outline" id="merchant-name" type="text" value="The Finery Market">
+</div>
+<button aria-label="Edit merchant" class="text-tertiary hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<!-- Date & Time Input Row -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-3.5 flex items-center gap-3.5 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all shadow-xs">
+<div class="size-10 rounded-lg bg-surface-container-low flex items-center justify-center text-tertiary shrink-0 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</div>
+<div class="flex-1 min-w-0">
+<label class="block font-label-md text-[11px] font-semibold text-tertiary uppercase tracking-wider" for="transaction-date">Timestamp</label>
+<input class="w-full bg-transparent border-0 p-0 text-on-surface font-body-md font-medium focus:ring-0 focus:outline-none placeholder:text-outline" id="transaction-date" type="text" value="Oct 24, 2023 · 14:32 EST">
+</div>
+<div class="text-tertiary p-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</div>
+</div>
+<!-- Category Selector with AI auto-filled badge -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-3.5 flex items-center gap-3.5 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-all shadow-xs">
+<div class="size-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container shrink-0 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[20px]">local_mall</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-0.5">
+<label class="block font-label-md text-[11px] font-semibold text-tertiary uppercase tracking-wider" for="category-select">Category</label>
+<!-- AI Auto-filled Indicator Badge -->
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed-variant border border-secondary-fixed">
+<span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-mono text-[9px] font-bold uppercase tracking-wide">AI Classified</span>
+</div>
+</div>
+<select class="w-full bg-transparent border-0 p-0 text-on-surface font-body-md font-medium focus:ring-0 focus:outline-none cursor-pointer pr-6" id="category-select">
+<option selected="">Groceries &amp; Daily Supplies</option>
+<option>Shopping &amp; Apparel</option>
+<option>Dining &amp; Refreshments</option>
+<option>Utilities &amp; Office</option>
+</select>
+</div>
+<div class="text-tertiary pointer-events-none pr-1">
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Optional Privacy & Ledger Details / Tags -->
+<div class="grid grid-cols-2 gap-2.5 pt-1">
+<!-- Payment Method Card -->
+<div class="bg-surface-container-low/70 border border-outline-variant/30 rounded-xl p-3 flex flex-col justify-between gap-1">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-[16px]">credit_card</span>
+<span class="font-label-md text-[11px] font-medium">Payment Method</span>
+</div>
+<span class="font-body-sm font-semibold text-on-surface truncate">Physical Debit •• 8841</span>
+</div>
+<!-- Tax Status Card -->
+<div class="bg-surface-container-low/70 border border-outline-variant/30 rounded-xl p-3 flex flex-col justify-between gap-1">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+<span class="font-label-md text-[11px] font-medium">Tax &amp; Surcharge</span>
+</div>
+<span class="font-body-sm font-semibold text-on-surface truncate">$3.42 Incl. (8.25%)</span>
+</div>
+</div>
+<!-- Privacy & Hash Note -->
+<div class="flex items-center justify-between px-2 py-1 text-tertiary">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-primary">enhanced_encryption</span>
+<span class="font-label-mono text-[11px]">SHA-256 Validated</span>
+</div>
+<span class="font-label-mono text-[10px] text-outline">TX-80492B</span>
+</div>
+</section>
+</main>
+<!-- 4. Pinned Bottom Action Area -->
+<footer class="sticky bottom-0 z-30 w-full bg-surface-container-lowest/95 backdrop-blur-md border-t border-outline-variant/30 p-4 shadow-[0_-4px_16px_rgba(0,0,0,0.03)] flex flex-col gap-2">
+<button class="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-xl bg-primary-container text-on-primary font-headline-sm text-base font-semibold tracking-wide hover:brightness-105 active:scale-[0.985] shadow-md shadow-primary-container/20 transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<span>Save to Ledger</span>
+</button>
+<!-- Discreet Secondary Action -->
+<div class="flex items-center justify-center">
+<button class="text-tertiary hover:text-on-surface text-xs font-label-md font-medium py-0.5" type="button">
+          Flag for Audit or Re-scan
+        </button>
+</div>
+</footer>
+</div>
+</body></html>
