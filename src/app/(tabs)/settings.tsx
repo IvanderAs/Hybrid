@@ -1,127 +1,265 @@
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  ActivityIndicator,
+  Alert,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from 'react-native';
 
-export default function SettingsScreen() {
+export default function ProfileScreen() {
   const router = useRouter();
+  
+  const [username, setUsername] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [saveMessage, setSaveMessage] = useState('');
+
+  // Load saved profile on mount & when Expo reloads
+  useEffect(() => {
+    loadUserProfile();
+  }, []);
+
+  const loadUserProfile = async () => {
+    try {
+      const storedName = await AsyncStorage.getItem('vault_username');
+      if (storedName) {
+        setUsername(storedName);
+      } else {
+        setUsername('Vault User'); // Default fallback if no name was set
+      }
+    } catch (e) {
+      console.error('Failed to load profile username', e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSaveUsername = async () => {
+    if (!username.trim()) {
+      Alert.alert('Error', 'Username cannot be empty.');
+      return;
+    }
+
+    try {
+      await AsyncStorage.setItem('vault_username', username.trim());
+      setIsEditing(false);
+      setSaveMessage('Profile updated successfully!');
+      setTimeout(() => setSaveMessage(''), 2500);
+    } catch (e) {
+      Alert.alert('Error', 'Failed to save username.');
+    }
+  };
+
+  const handleResetAccount = async () => {
+    Alert.alert(
+      'Reset Vault Account',
+      'Are you sure you want to reset your account? This will wipe your local profile, PIN, and stored transactions.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { 
+          text: 'Reset Everything', 
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await AsyncStorage.clear();
+              router.replace('/');
+            } catch (e) {
+              console.error('Failed to clear storage', e);
+            }
+          }
+        }
+      ]
+    );
+  };
+
+  if (isLoading) {
+    return (
+      <View style={[styles.container, styles.center]}>
+        <ActivityIndicator size="large" color="#10B981" />
+      </View>
+    );
+  }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerIcon}>
-        <Ionicons name="shield-checkmark-outline" size={28} color="#059669" />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>User Profile</Text>
       </View>
-      <Text style={styles.title}>Vault & Security Settings</Text>
-      <Text style={styles.subtitle}>
-        Create a local account for this device. Your username and PIN verifier
-        are stored in the local SQLite database.
-      </Text>
 
-      <Pressable
-        accessibilityRole="button"
-        onPress={() => router.push('/register')}
-        style={({ pressed }) => [styles.actionButton, pressed && styles.pressed]}
-      >
-        <View style={styles.actionIcon}>
-          <Ionicons name="person-add-outline" size={21} color="#059669" />
+      <View style={styles.content}>
+        
+        {/* Avatar Card */}
+        <View style={styles.profileCard}>
+          <View style={styles.avatarCircle}>
+            <Ionicons name="person" size={48} color="#FFFFFF" />
+          </View>
+          <Text style={styles.avatarName}>{username}</Text>
+          <View style={styles.offlineBadge}>
+            <View style={styles.greenDot} />
+            <Text style={styles.offlineBadgeText}>LOCAL ACCOUNT</Text>
+          </View>
         </View>
-        <View style={styles.actionTextBlock}>
-          <Text style={styles.actionTitle}>Create local account</Text>
-          <Text style={styles.actionSubtitle}>
-            Register a username and device PIN
+
+        {/* Profile Details Form */}
+        <View style={styles.formCard}>
+          <Text style={styles.cardSectionTitle}>Account Settings</Text>
+
+          {saveMessage ? (
+            <View style={styles.successNotice}>
+              <Ionicons name="checkmark-circle-outline" size={16} color="#047857" />
+              <Text style={styles.successNoticeText}>{saveMessage}</Text>
+            </View>
+          ) : null}
+
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Display Username</Text>
+            <View style={styles.inputShell}>
+              <Ionicons name="person-outline" size={18} color="#64748B" />
+              <TextInput
+                style={styles.input}
+                value={username}
+                onChangeText={setUsername}
+                editable={isEditing}
+                placeholder="Enter username"
+                placeholderTextColor="#94A3B8"
+              />
+            </View>
+          </View>
+
+          {isEditing ? (
+            <TouchableOpacity style={styles.saveButton} onPress={handleSaveUsername}>
+              <Text style={styles.saveButtonText}>Save Changes</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.editButton} onPress={() => setIsEditing(true)}>
+              <Text style={styles.editButtonText}>Edit Username</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+
+        {/* Danger Zone / Reset */}
+        <View style={[styles.formCard, styles.dangerCard]}>
+          <Text style={styles.dangerTitle}>Security & Reset</Text>
+          <Text style={styles.dangerDesc}>
+            Wipe all local data, PIN, and stored transactions from this device.
           </Text>
-        </View>
-        <Ionicons name="chevron-forward" size={20} color="#64748B" />
-      </Pressable>
 
-      <View style={styles.note}>
-        <Ionicons name="information-circle-outline" size={19} color="#64748B" />
-        <Text style={styles.noteText}>
-          Expo Go stores SQLite data locally but does not encrypt the database
-          file. Database encryption can be added later with SQLCipher in a
-          development build.
-        </Text>
+          <TouchableOpacity style={styles.resetButton} onPress={handleResetAccount}>
+            <Ionicons name="trash-outline" size={18} color="#EF4444" style={{ marginRight: 8 }} />
+            <Text style={styles.resetButtonText}>Reset Local Account</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F8FAFC',
-    paddingHorizontal: 24,
-    paddingTop: 38,
+  container: { flex: 1, backgroundColor: '#F8FAFC' },
+  center: { justifyContent: 'center', alignItems: 'center' },
+  header: { 
+    paddingHorizontal: 24, 
+    paddingVertical: 16, 
+    backgroundColor: '#FFFFFF', 
+    borderBottomWidth: 1, 
+    borderBottomColor: '#F1F5F9' 
   },
-  headerIcon: {
-    width: 56,
-    height: 56,
-    borderRadius: 17,
-    backgroundColor: '#D1FAE5',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-  },
-  title: {
-    color: '#0F172A',
-    fontSize: 24,
-    fontWeight: '800',
-    letterSpacing: -0.5,
-  },
-  subtitle: {
-    color: '#64748B',
-    fontSize: 14,
-    lineHeight: 22,
-    marginTop: 9,
-    marginBottom: 26,
-  },
-  actionButton: {
-    backgroundColor: '#FFFFFF',
+  headerTitle: { fontSize: 20, fontWeight: 'bold', color: '#1E293B' },
+  content: { padding: 24, gap: 16 },
+  profileCard: { 
+    backgroundColor: '#FFFFFF', 
+    borderRadius: 20, 
+    padding: 24, 
+    alignItems: 'center', 
+    borderWidth: 1, 
     borderColor: '#E2E8F0',
+    elevation: 2 
+  },
+  avatarCircle: { 
+    width: 80, 
+    height: 80, 
+    borderRadius: 40, 
+    backgroundColor: '#10B981', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    marginBottom: 12 
+  },
+  avatarName: { fontSize: 22, fontWeight: 'bold', color: '#1E293B', marginBottom: 6 },
+  offlineBadge: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    backgroundColor: '#ECFDF5', 
+    paddingHorizontal: 10, 
+    paddingVertical: 4, 
+    borderRadius: 999,
     borderWidth: 1,
-    borderRadius: 17,
-    minHeight: 82,
-    padding: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 13,
+    borderColor: '#A7F3D0'
   },
-  actionIcon: {
-    width: 45,
-    height: 45,
-    borderRadius: 13,
-    backgroundColor: '#ECFDF5',
-    alignItems: 'center',
-    justifyContent: 'center',
+  greenDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: '#10B981', marginRight: 6 },
+  offlineBadgeText: { fontSize: 10, fontWeight: 'bold', color: '#047857', letterSpacing: 0.5 },
+  formCard: { 
+    backgroundColor: '#FFFFFF', 
+    borderRadius: 16, 
+    padding: 20, 
+    borderWidth: 1, 
+    borderColor: '#E2E8F0' 
   },
-  actionTextBlock: {
-    flex: 1,
+  cardSectionTitle: { fontSize: 16, fontWeight: 'bold', color: '#1E293B', marginBottom: 16 },
+  inputGroup: { marginBottom: 16 },
+  label: { fontSize: 12, fontWeight: '600', color: '#475569', marginBottom: 6 },
+  inputShell: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    backgroundColor: '#F8FAFC', 
+    borderWidth: 1, 
+    borderColor: '#E2E8F0', 
+    borderRadius: 12, 
+    paddingHorizontal: 14 
   },
-  actionTitle: {
-    color: '#0F172A',
-    fontSize: 14,
-    fontWeight: '800',
+  input: { flex: 1, paddingVertical: 12, fontSize: 15, color: '#1E293B', marginLeft: 8 },
+  editButton: { 
+    backgroundColor: '#F1F5F9', 
+    paddingVertical: 12, 
+    borderRadius: 10, 
+    alignItems: 'center' 
   },
-  actionSubtitle: {
-    color: '#64748B',
-    fontSize: 12,
-    marginTop: 5,
+  editButtonText: { color: '#475569', fontSize: 14, fontWeight: '600' },
+  saveButton: { 
+    backgroundColor: '#10B981', 
+    paddingVertical: 12, 
+    borderRadius: 10, 
+    alignItems: 'center' 
   },
-  pressed: {
-    opacity: 0.75,
+  saveButtonText: { color: '#FFFFFF', fontSize: 14, fontWeight: 'bold' },
+  successNotice: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    backgroundColor: '#ECFDF5', 
+    padding: 10, 
+    borderRadius: 8, 
+    marginBottom: 14 
   },
-  note: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: 9,
-    marginTop: 22,
-    padding: 14,
-    borderRadius: 14,
-    backgroundColor: '#F1F5F9',
+  successNoticeText: { color: '#047857', fontSize: 12, marginLeft: 6, fontWeight: '500' },
+  dangerCard: { borderColor: '#FEE2E2', backgroundColor: '#FEF2F2' },
+  dangerTitle: { fontSize: 15, fontWeight: 'bold', color: '#991B1B', marginBottom: 4 },
+  dangerDesc: { fontSize: 12, color: '#B91C1C', marginBottom: 16 },
+  resetButton: { 
+    flexDirection: 'row', 
+    backgroundColor: '#FFFFFF', 
+    borderWidth: 1, 
+    borderColor: '#FECACA', 
+    paddingVertical: 12, 
+    borderRadius: 10, 
+    alignItems: 'center', 
+    justifyContent: 'center' 
   },
-  noteText: {
-    flex: 1,
-    color: '#475569',
-    fontSize: 12,
-    lineHeight: 18,
-  },
+  resetButtonText: { color: '#EF4444', fontSize: 14, fontWeight: 'bold' }
 });

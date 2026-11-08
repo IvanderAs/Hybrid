@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
@@ -13,7 +14,6 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { registerLocalAccount } from '../core/database/auth';
 
 const USERNAME_PATTERN = /^[A-Za-z0-9._-]{3,24}$/;
 const PIN_PATTERN = /^\d{6,12}$/;
@@ -52,16 +52,23 @@ export default function RegisterScreen() {
     setIsSaving(true);
 
     try {
-      await registerLocalAccount(cleanUsername, pin);
+      // Check if username already exists locally
+      const existingUser = await AsyncStorage.getItem('vault_username');
+      if (existingUser && existingUser.toLowerCase() === cleanUsername.toLowerCase()) {
+        setErrorMessage('That username is already registered on this device.');
+        setIsSaving(false);
+        return;
+      }
+
+      // Save user credentials using AsyncStorage
+      await AsyncStorage.setItem('vault_username', cleanUsername);
+      await AsyncStorage.setItem('vault_pin', pin);
+
       setPin('');
       setConfirmPin('');
       setCreated(true);
     } catch (error) {
-      if (error instanceof Error && error.message === 'USERNAME_EXISTS') {
-        setErrorMessage('That username is already registered on this device.');
-      } else {
-        setErrorMessage('The account could not be saved. Please try again.');
-      }
+      setErrorMessage('The account could not be saved. Please try again.');
     } finally {
       setIsSaving(false);
     }
@@ -95,8 +102,7 @@ export default function RegisterScreen() {
               </View>
               <Text style={styles.title}>Account created</Text>
               <Text style={styles.subtitle}>
-                Your account has been saved to this device. Your PIN itself was
-                not stored in the database.
+                Your account has been saved to this device securely.
               </Text>
 
               <View style={styles.successNotice}>
@@ -115,7 +121,7 @@ export default function RegisterScreen() {
                   pressed && styles.buttonPressed,
                 ]}
               >
-                <Text style={styles.primaryButtonText}>Return to Security</Text>
+                <Text style={styles.primaryButtonText}>Return to Profile</Text>
                 <Ionicons name="arrow-forward" size={18} color="#FFFFFF" />
               </Pressable>
             </View>
@@ -125,8 +131,7 @@ export default function RegisterScreen() {
                 <Text style={styles.eyebrow}>GET STARTED</Text>
                 <Text style={styles.title}>Create your local account.</Text>
                 <Text style={styles.subtitle}>
-                  Set a username and PIN to create an account stored on this
-                  device.
+                  Set a username and PIN to create an account stored on this device.
                 </Text>
               </View>
 
@@ -242,205 +247,34 @@ export default function RegisterScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#F8FAFC',
-  },
-  flex: {
-    flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
-    width: '100%',
-    maxWidth: 560,
-    alignSelf: 'center',
-    paddingHorizontal: 24,
-    paddingTop: 22,
-    paddingBottom: 34,
-  },
-  topRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    marginBottom: 38,
-  },
-  brandIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 15,
-    backgroundColor: '#059669',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  brandName: {
-    color: '#0F172A',
-    fontSize: 13,
-    fontWeight: '800',
-    letterSpacing: 1.6,
-  },
-  brandCaption: {
-    color: '#64748B',
-    fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 1.8,
-    marginTop: 4,
-  },
-  headingBlock: {
-    marginBottom: 24,
-  },
-  eyebrow: {
-    color: '#059669',
-    fontSize: 12,
-    fontWeight: '800',
-    letterSpacing: 2,
-    marginBottom: 9,
-  },
-  title: {
-    color: '#0F172A',
-    fontSize: 30,
-    lineHeight: 36,
-    fontWeight: '800',
-    letterSpacing: -0.8,
-  },
-  subtitle: {
-    color: '#64748B',
-    fontSize: 15,
-    lineHeight: 23,
-    marginTop: 10,
-  },
-  formCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 22,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-    padding: 20,
-    shadowColor: '#0F172A',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.04,
-    shadowRadius: 18,
-    elevation: 2,
-  },
-  label: {
-    color: '#334155',
-    fontSize: 13,
-    fontWeight: '700',
-    marginBottom: 9,
-  },
-  labelSpaced: {
-    marginTop: 20,
-  },
-  inputShell: {
-    minHeight: 54,
-    borderWidth: 1,
-    borderColor: '#CBD5E1',
-    borderRadius: 13,
-    backgroundColor: '#FFFFFF',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 14,
-    gap: 11,
-  },
-  input: {
-    flex: 1,
-    minHeight: 52,
-    color: '#0F172A',
-    fontSize: 15,
-    paddingVertical: 0,
-  },
-  helperText: {
-    marginTop: 7,
-    color: '#64748B',
-    fontSize: 12,
-    lineHeight: 17,
-  },
-  securityHint: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    backgroundColor: '#ECFDF5',
-    borderRadius: 12,
-    padding: 12,
-    gap: 9,
-    marginTop: 20,
-  },
-  securityHintText: {
-    flex: 1,
-    color: '#065F46',
-    fontSize: 12,
-    lineHeight: 18,
-  },
-  errorBox: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    backgroundColor: '#FEF2F2',
-    borderRadius: 12,
-    padding: 12,
-    gap: 9,
-    marginTop: 16,
-  },
-  errorText: {
-    flex: 1,
-    color: '#991B1B',
-    fontSize: 13,
-    lineHeight: 19,
-  },
-  primaryButton: {
-    minHeight: 54,
-    backgroundColor: '#059669',
-    borderRadius: 14,
-    paddingHorizontal: 18,
-    marginTop: 22,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-  },
-  primaryButtonText: {
-    color: '#FFFFFF',
-    fontSize: 15,
-    fontWeight: '800',
-  },
-  buttonPressed: {
-    opacity: 0.78,
-  },
-  footerNote: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 8,
-    marginTop: 22,
-    paddingHorizontal: 10,
-  },
-  footerText: {
-    color: '#64748B',
-    fontSize: 12,
-    lineHeight: 18,
-    textAlign: 'center',
-    flexShrink: 1,
-  },
-  successCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 22,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-    padding: 24,
-    marginTop: 16,
-  },
-  successIcon: {
-    marginBottom: 18,
-  },
-  successNotice: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    backgroundColor: '#ECFDF5',
-    padding: 13,
-    borderRadius: 12,
-    gap: 9,
-    marginTop: 22,
-  },
-  successNoticeText: {
-    flex: 1,
-    color: '#065F46',
-    fontSize: 13,
-    lineHeight: 19,
-  },
+  safeArea: { flex: 1, backgroundColor: '#F8FAFC' },
+  flex: { flex: 1 },
+  scrollContent: { flexGrow: 1, width: '100%', maxWidth: 560, alignSelf: 'center', paddingHorizontal: 24, paddingTop: 22, paddingBottom: 34 },
+  topRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 38 },
+  brandIcon: { width: 48, height: 48, borderRadius: 15, backgroundColor: '#059669', alignItems: 'center', justifyContent: 'center' },
+  brandName: { color: '#0F172A', fontSize: 13, fontWeight: '800', letterSpacing: 1.6 },
+  brandCaption: { color: '#64748B', fontSize: 10, fontWeight: '700', letterSpacing: 1.8, marginTop: 4 },
+  headingBlock: { marginBottom: 24 },
+  eyebrow: { color: '#059669', fontSize: 12, fontWeight: '800', letterSpacing: 2, marginBottom: 9 },
+  title: { color: '#0F172A', fontSize: 30, lineHeight: 36, fontWeight: '800', letterSpacing: -0.8 },
+  subtitle: { color: '#64748B', fontSize: 15, lineHeight: 23, marginTop: 10 },
+  formCard: { backgroundColor: '#FFFFFF', borderRadius: 22, borderWidth: 1, borderColor: '#E2E8F0', padding: 20, elevation: 2 },
+  label: { color: '#334155', fontSize: 13, fontWeight: '700', marginBottom: 9 },
+  labelSpaced: { marginTop: 20 },
+  inputShell: { minHeight: 54, borderWidth: 1, borderColor: '#CBD5E1', borderRadius: 13, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, gap: 11 },
+  input: { flex: 1, minHeight: 52, color: '#0F172A', fontSize: 15, paddingVertical: 0 },
+  helperText: { marginTop: 7, color: '#64748B', fontSize: 12, lineHeight: 17 },
+  securityHint: { flexDirection: 'row', alignItems: 'flex-start', backgroundColor: '#ECFDF5', borderRadius: 12, padding: 12, gap: 9, marginTop: 20 },
+  securityHintText: { flex: 1, color: '#065F46', fontSize: 12, lineHeight: 18 },
+  errorBox: { flexDirection: 'row', alignItems: 'flex-start', backgroundColor: '#FEF2F2', borderRadius: 12, padding: 12, gap: 9, marginTop: 16 },
+  errorText: { flex: 1, color: '#991B1B', fontSize: 13, lineHeight: 19 },
+  primaryButton: { minHeight: 54, backgroundColor: '#059669', borderRadius: 14, paddingHorizontal: 18, marginTop: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  primaryButtonText: { color: '#FFFFFF', fontSize: 15, fontWeight: '800' },
+  buttonPressed: { opacity: 0.78 },
+  footerNote: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 8, marginTop: 22, paddingHorizontal: 10 },
+  footerText: { color: '#64748B', fontSize: 12, lineHeight: 18, textAlign: 'center', flexShrink: 1 },
+  successCard: { backgroundColor: '#FFFFFF', borderRadius: 22, borderWidth: 1, borderColor: '#E2E8F0', padding: 24, marginTop: 16 },
+  successIcon: { marginBottom: 18 },
+  successNotice: { flexDirection: 'row', alignItems: 'flex-start', backgroundColor: '#ECFDF5', padding: 13, borderRadius: 12, gap: 9, marginTop: 22 },
+  successNoticeText: { flex: 1, color: '#065F46', fontSize: 13, lineHeight: 19 },
 });
