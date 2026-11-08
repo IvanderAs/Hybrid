@@ -4,7 +4,6 @@ import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
-  Alert,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -21,7 +20,7 @@ export default function ProfileScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [saveMessage, setSaveMessage] = useState('');
 
-  // Load saved profile on mount & when Expo reloads
+  // Load saved profile on mount
   useEffect(() => {
     loadUserProfile();
   }, []);
@@ -32,7 +31,7 @@ export default function ProfileScreen() {
       if (storedName) {
         setUsername(storedName);
       } else {
-        setUsername('Vault User'); // Default fallback if no name was set
+        setUsername('Vault User');
       }
     } catch (e) {
       console.error('Failed to load profile username', e);
@@ -42,10 +41,7 @@ export default function ProfileScreen() {
   };
 
   const handleSaveUsername = async () => {
-    if (!username.trim()) {
-      Alert.alert('Error', 'Username cannot be empty.');
-      return;
-    }
+    if (!username.trim()) return;
 
     try {
       await AsyncStorage.setItem('vault_username', username.trim());
@@ -53,30 +49,22 @@ export default function ProfileScreen() {
       setSaveMessage('Profile updated successfully!');
       setTimeout(() => setSaveMessage(''), 2500);
     } catch (e) {
-      Alert.alert('Error', 'Failed to save username.');
+      console.error('Failed to save username', e);
     }
   };
 
+  // Executable Account Reset Handler
   const handleResetAccount = async () => {
-    Alert.alert(
-      'Reset Vault Account',
-      'Are you sure you want to reset your account? This will wipe your local profile, PIN, and stored transactions.',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Reset Everything', 
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await AsyncStorage.clear();
-              router.replace('/');
-            } catch (e) {
-              console.error('Failed to clear storage', e);
-            }
-          }
-        }
-      ]
-    );
+    try {
+      setIsLoading(true);
+      // Wipe all stored key-value pairs
+      await AsyncStorage.clear();
+      // Redirect back to root authentication screen
+      router.replace('/');
+    } catch (e) {
+      console.error('Failed to reset account', e);
+      setIsLoading(false);
+    }
   };
 
   if (isLoading) {
@@ -95,7 +83,7 @@ export default function ProfileScreen() {
 
       <View style={styles.content}>
         
-        {/* Avatar Card */}
+        {/* Profile Identity Card */}
         <View style={styles.profileCard}>
           <View style={styles.avatarCircle}>
             <Ionicons name="person" size={48} color="#FFFFFF" />
@@ -107,7 +95,7 @@ export default function ProfileScreen() {
           </View>
         </View>
 
-        {/* Profile Details Form */}
+        {/* Account Details Form */}
         <View style={styles.formCard}>
           <Text style={styles.cardSectionTitle}>Account Settings</Text>
 
@@ -144,11 +132,11 @@ export default function ProfileScreen() {
           )}
         </View>
 
-        {/* Danger Zone / Reset */}
+        {/* Security & Account Reset Card */}
         <View style={[styles.formCard, styles.dangerCard]}>
           <Text style={styles.dangerTitle}>Security & Reset</Text>
           <Text style={styles.dangerDesc}>
-            Wipe all local data, PIN, and stored transactions from this device.
+            Wipe all saved account details, local settings, and credentials from this device.
           </Text>
 
           <TouchableOpacity style={styles.resetButton} onPress={handleResetAccount}>

@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useRouter } from 'expo-router';
+import { useIsFocused, useRouter } from 'expo-router';
 import React, { useRef, useState } from 'react';
 import {
   ActivityIndicator,
@@ -16,6 +16,7 @@ import {
 
 export default function CaptureScreen() {
   const router = useRouter();
+  const isFocused = useIsFocused(); // Track tab focus state
   const cameraRef = useRef<any>(null);
   
   const [permission, requestPermission] = useCameraPermissions();
@@ -35,7 +36,7 @@ export default function CaptureScreen() {
       <View style={styles.permissionContainer}>
         <Ionicons name="camera-outline" size={64} color="#64748B" style={{ marginBottom: 16 }} />
         <Text style={styles.permissionTitle}>Camera Access Required</Text>
-        <Text style={styles.permissionSubtitle}>VaultExpense needs camera access to scan offline physical receipts.</Text>
+        <Text style={styles.permissionSubtitle}>VaultExpense needs camera access to scan physical receipts.</Text>
         <TouchableOpacity style={styles.grantButton} onPress={requestPermission}>
           <Text style={styles.grantButtonText}>Grant Permission</Text>
         </TouchableOpacity>
@@ -86,41 +87,47 @@ export default function CaptureScreen() {
 
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} ref={cameraRef}>
-        <SafeAreaView style={styles.overlay}>
-          
-          {/* Header */}
-          <View style={styles.header}>
-            <Text style={styles.headerTitle}>Edge Vision OCR</Text>
-            <View style={styles.badge}>
-              <View style={styles.greenDot} />
-              <Text style={styles.badgeText}>100% OFFLINE</Text>
+      {/* 
+        Camera active prop is bound to isFocused. 
+        When the user navigates away, active becomes false and pauses the camera stream.
+      */}
+      {isFocused && (
+        <CameraView style={styles.camera} ref={cameraRef} active={isFocused}>
+          <SafeAreaView style={styles.overlay}>
+            
+            {/* Header */}
+            <View style={styles.header}>
+              <Text style={styles.headerTitle}>Edge Vision OCR</Text>
+              <View style={styles.badge}>
+                <View style={styles.greenDot} />
+                <Text style={styles.badgeText}>100% OFFLINE</Text>
+              </View>
             </View>
-          </View>
 
-          {/* Viewfinder Guide */}
-          <View style={styles.viewfinderCenter}>
-            <View style={styles.scannerFrame} />
-            <Text style={styles.guideText}>Align receipt within frame</Text>
-          </View>
+            {/* Viewfinder Guide */}
+            <View style={styles.viewfinderCenter}>
+              <View style={styles.scannerFrame} />
+              <Text style={styles.guideText}>Align receipt within frame</Text>
+            </View>
 
-          {/* Shutter / Capture Button */}
-          <View style={styles.footer}>
-            <TouchableOpacity 
-              style={styles.captureButton} 
-              onPress={handleCapture}
-              disabled={isProcessing}
-            >
-              {isProcessing ? (
-                <ActivityIndicator color="#FFFFFF" />
-              ) : (
-                <View style={styles.innerShutter} />
-              )}
-            </TouchableOpacity>
-          </View>
+            {/* Shutter Button */}
+            <View style={styles.footer}>
+              <TouchableOpacity 
+                style={styles.captureButton} 
+                onPress={handleCapture}
+                disabled={isProcessing}
+              >
+                {isProcessing ? (
+                  <ActivityIndicator color="#FFFFFF" />
+                ) : (
+                  <View style={styles.innerShutter} />
+                )}
+              </TouchableOpacity>
+            </View>
 
-        </SafeAreaView>
-      </CameraView>
+          </SafeAreaView>
+        </CameraView>
+      )}
 
       {/* OCR Fail State Modal */}
       <Modal visible={showFailModal} animationType="slide" transparent>
