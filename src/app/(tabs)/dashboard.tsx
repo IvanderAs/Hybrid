@@ -12,10 +12,6 @@ export default function DashboardScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.badgeContainer}>
-          <Ionicons name="shield-checkmark" size={12} color="#047857" style={{ marginRight: 4 }} />
-          <Text style={styles.badgeText}>DUMMY MODE ACTIVE</Text>
-        </View>
         <TouchableOpacity style={styles.settingsIcon}>
           <Ionicons name="settings-outline" size={24} color="#64748B" />
         </TouchableOpacity>
